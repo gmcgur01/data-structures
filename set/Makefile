@@ -1,4 +1,7 @@
 COMPILE_FLAGS = -Wall -Wextra -Werror
 
-hello: hello.c
+%.o: %.c
+	gcc -c $< -o $@
+
+test: test.c set.o
 	gcc $(COMPILE_FLAGS) $^ -o $@
