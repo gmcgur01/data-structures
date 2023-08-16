@@ -38,3 +38,47 @@ bool Set_in(Set_T set, int elem) {
     }
     return false;
 }
+
+void Set_add(Set_T set, int elem) {
+    assert(set);
+
+    for (int i = 0; i < set->curr_size; i++) {
+        if (set->data[i] == elem) {
+            return;
+        } 
+    } 
+
+    if (set->curr_size == set->max_size) {
+        set->max_size *= 2;
+        set->data = realloc(set->data, sizeof(int) * set->max_size);
+        assert(set->data);
+    }
+    set->data[set->curr_size++] = elem;
+}
+
+void Set_print(Set_T set) {
+    assert(set);
+
+    printf("Current Size: %u\nMax Size: %u\nElements:\n", set->curr_size, set->max_size);
+
+    for (int i = 0; i < set->curr_size; i++) {
+        printf("%d\n", set->data[i]);
+    }
+
+}
+
+void Set_remove(Set_T set, int elem) {
+    assert(set);
+
+    for (int i = 0; i < set->curr_size; i++) {
+        if (elem == set->data[i]) {
+            set->data[i] = set->data[--set->curr_size];
+        }
+    }
+}
+
+unsigned Set_size(Set_T set) {
+    assert(set);
+
+    return set->curr_size;
+}
