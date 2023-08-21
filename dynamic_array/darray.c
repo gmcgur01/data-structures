@@ -3,6 +3,11 @@
 #include "stdlib.h"
 #include "assert.h"
 
+// TODO: add a remove element function
+
+// The way I'm thinking of implementing would be O(n), but I wonder if there's 
+// a cleverer way to do it
+
 struct DArray {
     unsigned curr_size;
     unsigned max_size;
@@ -68,4 +73,31 @@ void DArray_set(DArray_T darray, int index, void *elem) {
     } else {
         darray->data[index] = elem;
     }
+}
+
+void DArray_print(DArray_T darray) {
+    assert(darray);
+
+    printf("Current Size: %u\nMax Size: %u\nElements:\n", darray->curr_size, darray->max_size);
+
+    for (int i = 0; i < darray->curr_size; i++) {
+        printf("%llx\n", (long long unsigned)darray->data[i]);
+    }
+}
+
+// shifts down elements
+void DArray_delete(DArray_T darray, int index) {
+    assert(darray);
+    assert(index < (int)darray->curr_size);
+    assert(index > ((int)(-1 * darray->curr_size) - 1));
+    
+    if (index < 0) {
+        index = darray->curr_size + index;
+    }
+
+    for (;index < darray->curr_size - 1; index++) {
+        darray->data[index] = darray->data[index + 1];
+    }
+
+    darray->curr_size--;
 }
