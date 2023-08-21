@@ -101,3 +101,13 @@ void DArray_delete(DArray_T darray, int index) {
 
     darray->curr_size--;
 }
+
+void DArray_map(DArray_T darray, 
+    void apply(int index, DArray_T darray, void *curr_element, void *cl),
+    void *cl) {
+    assert(darray);
+
+    for (int i = 0; i < darray->curr_size; i++) {
+        apply(i, darray, darray->data[i], cl);
+    }
+}

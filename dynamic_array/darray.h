@@ -11,5 +11,8 @@ void *DArray_get(DArray_T darray, int index);
 void DArray_set(DArray_T darray, int index, void *elem);
 void DArray_print(DArray_T darray);
 void DArray_delete(DArray_T darray, int index); 
+void DArray_map(DArray_T darray, 
+    void apply(int index, DArray_T darray, void *curr_element, void *cl),
+    void *cl);
 
 #endif

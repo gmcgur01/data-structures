@@ -2,6 +2,13 @@
 #include "stdio.h"
 #include "darray.h"
 
+void apply_print(int index, DArray_T darray, void *curr_elem, void *cl) {
+    (void) index;
+    (void) darray;
+    (void) cl;
+    printf("%d\n", *(int *)curr_elem);
+}
+
 int main () {
 
     DArray_T darray = DArray_new();
@@ -31,6 +38,8 @@ int main () {
     }
 
     DArray_print(darray);
+
+    DArray_map(darray, apply_print, NULL);
     
     DArray_free(&darray);
 
