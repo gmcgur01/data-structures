@@ -3,6 +3,8 @@
 #include "stdio.h"
 #include "assert.h"
 
+// TODO: Implement the set using a hash table
+
 struct Set {
     unsigned curr_size;
     unsigned max_size;

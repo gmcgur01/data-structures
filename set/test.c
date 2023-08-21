@@ -13,4 +13,6 @@ int main() {
     Set_print(set);
     printf(Set_in(set, 50) ? "true!\n" : "false!\n"); 
     Set_free(&set);
+
+    return 0;
 }
