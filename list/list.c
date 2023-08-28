@@ -112,3 +112,44 @@ void List_map(List_T list,
     }
 }
 
+List_T List_copy(List_T list) {
+    assert(list);
+
+    List_T new_list = malloc(sizeof(*new_list));
+    assert(new_list);
+
+    new_list->curr_size = list->curr_size;
+    new_list->max_size = list->max_size;
+
+    new_list->data = malloc(new_list->max_size * sizeof(void *));
+    assert(new_list->data);
+
+    for (int i = 0; i < list->curr_size; i++) {
+        new_list->data[i] = list->data[i];
+    }
+
+    return new_list;
+}
+
+List_T List_append(List_T list1, List_T list2) {
+    assert(list1 && list2);
+
+    List_T new_list = malloc(sizeof(*new_list));
+    assert(new_list);
+
+    new_list->curr_size = list1->curr_size + list2->curr_size;
+    new_list->max_size = list1->max_size + list2->max_size;
+
+    new_list->data = malloc(new_list->max_size * sizeof(void *));
+    assert(new_list->data);
+
+    for (int i = 0; i < list1->curr_size; i++) {
+        new_list->data[i] = list1->data[i];
+    }
+
+    for (int i = 0; i < list2->curr_size; i++) {
+        new_list->data[list1->curr_size + i] = list2->data[i];
+    }
+
+    return new_list;
+}

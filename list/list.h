@@ -14,5 +14,7 @@ void List_delete(List_T list, int index);
 void List_map(List_T list, 
     void apply(int index, List_T list, void *curr_element, void *cl),
     void *cl);
+List_T List_copy(List_T list);
+List_T List_append(List_T list1, List_T list2);
 
 #endif
