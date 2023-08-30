@@ -1,6 +1,8 @@
 #ifndef HEAP_INCLUDED
 #define HEAP_INCLUDED
 
+#include "stdbool.h"
+
 typedef struct Heap *Heap_T;
 
 
@@ -17,6 +19,7 @@ typedef struct Heap *Heap_T;
 */
 Heap_T Heap_new(int cmp(void *elem1, void *elem2));
 void Heap_free(Heap_T *heap_p);
+bool Heap_is_empty(Heap_T heap);
 unsigned Heap_size(Heap_T heap);
 void *Heap_top(Heap_T heap);
 void *Heap_pop_top(Heap_T heap);
